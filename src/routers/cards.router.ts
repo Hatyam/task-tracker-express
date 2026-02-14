@@ -9,6 +9,7 @@ import {
     updateCard,
 } from '../database/cards-repository';
 import { randomUUID } from 'crypto';
+import { validateCardInput } from './validation/validate-card-inputs';
 
 export const cardsRouter = express.Router();
 
@@ -39,6 +40,7 @@ cardsRouter.get(
 
 cardsRouter.post(
     '/',
+    validateCardInput,
     async (
         request: Request<{}, Card, CreateCardRequest>,
         response: Response<Card>,

@@ -1,5 +1,5 @@
-import sqlite3 from "sqlite3";
-import { SQLITE_PATH } from "../config";
+import sqlite3 from 'sqlite3';
+import { SQLITE_PATH } from '../config';
 
 const db = new sqlite3.Database(SQLITE_PATH, (error) => {
     if (error) {
@@ -12,7 +12,10 @@ const db = new sqlite3.Database(SQLITE_PATH, (error) => {
 
 // run, get, all
 
-export const sqLiteRun = (sql: string, params?: unknown[]): Promise<unknown> => {
+export const sqLiteRun = (
+    sql: string,
+    params?: unknown[],
+): Promise<unknown> => {
     return new Promise((resolve, reject) => {
         db.run(sql, params, (error: unknown, data: unknown) => {
             if (error) {
@@ -20,11 +23,14 @@ export const sqLiteRun = (sql: string, params?: unknown[]): Promise<unknown> => 
             }
 
             resolve(data);
-        })
-    })
-}
+        });
+    });
+};
 
-export const sqLiteGet = (sql: string, params?: unknown[]): Promise<unknown> => {
+export const sqLiteGet = (
+    sql: string,
+    params?: unknown[],
+): Promise<unknown> => {
     return new Promise((resolve, reject) => {
         db.get(sql, params, (error: unknown, data: unknown) => {
             if (error) {
@@ -36,7 +42,10 @@ export const sqLiteGet = (sql: string, params?: unknown[]): Promise<unknown> => 
     });
 };
 
-export const sqLiteAll = (sql: string, params?: unknown[]): Promise<unknown> => {
+export const sqLiteAll = (
+    sql: string,
+    params?: unknown[],
+): Promise<unknown> => {
     return new Promise((resolve, reject) => {
         db.all(sql, params, (error: unknown, data: unknown) => {
             if (error) {
